@@ -1,0 +1,35 @@
+Store,Glen-Mart,42,,,,,,,
+TaxCategory,Food,0.07,1/1/2026,,,,,,
+TaxCategory,Beverage,0,1/1/2026,,,,,,
+Cashier,1,Bonnie,111-11-1111,101 1st Street,Edmond,OK,73034,405.348.1111,password1
+Cashier,2,Clyde,222-22-2222,202 2nd Street,Edmond,OK,73034,405.348.2222,password2
+Item,1001,11111111111,Turkey Sandwich,Food,2.59,1/1/2026,2.29,9/30/2026,10/31/2026
+Item,1002,22222222222,Ham Sandwich,Food,2.59,1/1/2026,,,
+Item,1003,33333333333,Coke,Beverage,0.97,1/1/2026,0.79,9/1/2026,10/1/2026
+Item,1004,44444444444,Dr. Pepper,Beverage,0.97,1/1/2026,0.79,10/31/2026,11/30/2026
+Item,1005,55555555555,Mt. Dew,Beverage,1.00,1/1/2026,0.70,10/1/2026,12/31/2026
+Register,1,100,,,,,,,
+Register,2,200,,,,,,,
+Session,1,2,,,,,,,
+Sale,Y,,,,,,,,
+SaleLineItem,1001,1,,,,,,,
+SaleLineItem,1002,2,,,,,,,
+Payment,Cash,7.47,10,,,,,,
+Sale,N,,,,,,,,
+SaleLineItem,1003,2,,,,,,,
+SaleLineItem,1004,1,,,,,,,
+Payment,Credit,2.91,2.91,MC,1111222244445550,10/1/2030,,,
+Session,2,1,,,,,,,
+Sale,N,,,,,,,,
+SaleLineItem,1001,1,,,,,,,
+SaleLineItem,1003,2,,,,,,,
+Payment,Cash,4.39,5,,,,,,
+Sale,N,,,,,,,,
+SaleLineItem,1002,2,,,,,,,
+SaleLineItem,1004,1,,,,,,,
+Payment,Check,6.51,6.51,1010101010,111111111,1001,,,
+Sale,N,,,,,,,,
+SaleLineItem,1005,10,,,,,,,
+SaleLineItem,1002,3,,,,,,,
+SaleLineItem,1001,2,,,,,,,
+Payment,Cash,20.21,25,,,,,,
