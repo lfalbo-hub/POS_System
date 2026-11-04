@@ -344,6 +344,20 @@ public class Store {
 		return taxCategories.get(category);
 	}
 
+	public boolean isTaxCategoryUsed(TaxCategory taxCategory) {
+		boolean isUsed = false;
+		
+		for(Item anItem : getItems().values()) {
+			TaxCategory aTaxCategory = anItem.getTaxCategory();
+			if(taxCategory.getCategory().compareTo(aTaxCategory.getCategory()) == 0) {
+				isUsed = true;
+				break;
+			}
+		}
+		
+		return isUsed;
+	}
+	
 	public void openStore() {
 		StoreDM.loadStore(this);
 	}
@@ -353,4 +367,5 @@ public class Store {
 		return "Store #: " + getNumber() + ", name: " + getName();
 		
 	}
+
 }
