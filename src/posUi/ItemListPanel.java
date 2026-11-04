@@ -24,6 +24,10 @@ public class ItemListPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	private JButton btnAdd;
+	private JButton btnEdit;
+	private JButton btnDelete;
+	
 	/**
 	 * Create the panel.
 	 * @param currentFrame 
@@ -40,44 +44,55 @@ public class ItemListPanel extends JPanel {
 		
 		listModel.addAll(theStore.getItems().values());
 		
-		JList itemList = new JList(listModel);
+		JList<Item> itemList = new JList(listModel);
 		itemList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				System.out.println("List Value Changed");
 				
+				Item i = itemList.getSelectedValue();
+				
+				if(i != null) {
+					btnEdit.setEnabled(true);
+					btnDelete.setEnabled(false);
+				}
+				else {
+					btnEdit.setEnabled(true);
+					btnDelete.setEnabled(true);
+				}
 				
 			}
 		});
 		itemList.setBounds(167, 56, 115, 130);
 		add(itemList);
 		
-		JButton btnSaveButton = new JButton("Save");
-		btnSaveButton.addActionListener(new ActionListener() {
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Save Clicked");
+				System.out.println("Add Clicked");
 			}
 		});
-		btnSaveButton.setBounds(65, 197, 89, 23);
-		add(btnSaveButton);
+		btnAdd.setBounds(65, 197, 89, 23);
+		add(btnAdd);
 		
-		JButton btnEditButton = new JButton("Edit");
-		btnEditButton.addActionListener(new ActionListener() {
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Edit Clicked");
 			}
 		});
-		btnEditButton.setBounds(180, 197, 89, 23);
-		add(btnEditButton);
+		btnEdit.setBounds(180, 197, 89, 23);
+		add(btnEdit);
 		
-		JButton btnDeleteButton = new JButton("Delete");
-		btnDeleteButton.addActionListener(new ActionListener() {
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
 			}
 		});
-		btnDeleteButton.setBounds(287, 197, 89, 23);
-		add(btnDeleteButton);
+		btnDelete.setBounds(287, 197, 89, 23);
+		add(btnDelete);
 
-		
+		btnEdit.setEnabled(false);
+		btnDelete.setEnabled(false);
 	}
 }

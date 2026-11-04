@@ -244,8 +244,9 @@ public class Item {
 	public String toString() {
 		String returnStr = "";
 		
-		returnStr += "Number: " + number + "\nDescription: " + description;
-		returnStr += "\nTaxCategory: " + taxCategory;
+		returnStr += number + "  " + description;
+		returnStr += " " + taxCategory;
+		returnStr += " " + this.getPriceForDate(LocalDate.now());
 		
 		return returnStr;
 	}

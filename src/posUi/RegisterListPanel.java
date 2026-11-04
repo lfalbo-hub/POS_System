@@ -24,6 +24,9 @@ public class RegisterListPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	private JButton btnAdd;
+	private JButton btnEdit;
+	private JButton btnDelete;
 	/**
 	 * Create the panel.
 	 * @param currentFrame 
@@ -49,33 +52,34 @@ public class RegisterListPanel extends JPanel {
 		registerList.setBounds(167, 56, 115, 130);
 		add(registerList);
 		
-		JButton btnSaveButton = new JButton("Save");
-		btnSaveButton.addActionListener(new ActionListener() {
+		btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Save Clicked");
+				System.out.println("Add Clicked");
 			}
 		});
-		btnSaveButton.setBounds(65, 197, 89, 23);
-		add(btnSaveButton);
+		btnAdd.setBounds(65, 197, 89, 23);
+		add(btnAdd);
 		
-		JButton btnEditButton = new JButton("Edit");
-		btnEditButton.addActionListener(new ActionListener() {
+		btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Edit Clicked");
 			}
 		});
-		btnEditButton.setBounds(180, 197, 89, 23);
-		add(btnEditButton);
+		btnEdit.setBounds(180, 197, 89, 23);
+		add(btnEdit);
 		
-		JButton btnDeleteButton = new JButton("Delete");
-		btnDeleteButton.addActionListener(new ActionListener() {
+		btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
 			}
 		});
-		btnDeleteButton.setBounds(287, 197, 89, 23);
-		add(btnDeleteButton);
+		btnDelete.setBounds(287, 197, 89, 23);
+		add(btnDelete);
 		
-
+		btnEdit.setEnabled(false);
+		btnDelete.setEnabled(false);
 	}
 }

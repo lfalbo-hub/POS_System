@@ -21,13 +21,18 @@ public class CashierListPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	private JButton btnAdd;
+	private JButton btnSave;
+	private JButton btnDelete;
+	
 	/**
 	 * Create the panel.
 	 * @param currentFrame 
 	 */
 	public CashierListPanel(JFrame currentFrame, Store theStore) {
 		setLayout(null);
-			JLabel lblCashierListLabel = new JLabel("Cashier List");
+		
+		JLabel lblCashierListLabel = new JLabel("Cashier List");
 		lblCashierListLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCashierListLabel.setBounds(172, 31, 106, 14);
 		add(lblCashierListLabel);
@@ -36,41 +41,53 @@ public class CashierListPanel extends JPanel {
 		
 		listModel.addAll(theStore.getCashiers().values());
 		
-		JList cashierList = new JList(listModel);
+		JList<Cashier> cashierList = new JList(listModel);
 		cashierList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				System.out.println("List Value Changed");
+				
+				Cashier c = cashierList.getSelectedValue();
+				if(c != null) {
+					btnAdd.setEnabled(true);			
+					btnDelete.setEnabled(true);
+				}	
+				else {
+					btnAdd.setEnabled(false);
+					btnDelete.setEnabled(false);
+				}
 			}
 		});
 		cashierList.setBounds(167, 56, 115, 130);
 		add(cashierList);
 		
-		JButton btnSaveButton = new JButton("Save");
-		btnSaveButton.addActionListener(new ActionListener() {
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Save Clicked");
+				System.out.println("Add Clicked");
 			}
 		});
-		btnSaveButton.setBounds(65, 197, 89, 23);
-		add(btnSaveButton);
+		btnAdd.setBounds(65, 197, 89, 23);
+		add(btnAdd);
 		
-		JButton btnEditButton = new JButton("Edit");
-		btnEditButton.addActionListener(new ActionListener() {
+		btnAdd = new JButton("Edit");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Edit Clicked");
 			}
 		});
-		btnEditButton.setBounds(180, 197, 89, 23);
-		add(btnEditButton);
+		btnAdd.setBounds(180, 197, 89, 23);
+		add(btnAdd);
 		
-		JButton btnDeleteButton = new JButton("Delete");
-		btnDeleteButton.addActionListener(new ActionListener() {
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
 			}
 		});
-		btnDeleteButton.setBounds(287, 197, 89, 23);
-		add(btnDeleteButton);
+		btnDelete.setBounds(287, 197, 89, 23);
+		add(btnDelete);
 		
+		btnAdd.setEnabled(false);
+		btnDelete.setEnabled(false);
 	}
 }

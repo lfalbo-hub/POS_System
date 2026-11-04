@@ -22,8 +22,8 @@ public class  TaxCategoryListPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
+	private JButton btnAdd;
 	private JButton btnEdit;
-	private JButton btnSave;
 	private JButton btnDelete;
 	
 	/**
@@ -35,7 +35,7 @@ public class  TaxCategoryListPanel extends JPanel {
 		
 		JLabel lblTaxCategoryListLabel = new JLabel("Tax Category List");
 		lblTaxCategoryListLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTaxCategoryListLabel.setBounds(172, 31, 106, 14);
+		lblTaxCategoryListLabel.setBounds(154, 30, 141, 14);
 		add(lblTaxCategoryListLabel);
 		
 		DefaultListModel<TaxCategory> listModel = new DefaultListModel<TaxCategory>();
@@ -54,29 +54,27 @@ public class  TaxCategoryListPanel extends JPanel {
 					
 					if(theStore.isTaxCategoryUsed(tc)) {
 						btnDelete.setEnabled(false);
+					} else {
+						btnEdit.setEnabled(true);
+						btnDelete.setEnabled(false);
 					}
-					else {
-						btnEdit.setEnabled(false);
-						btnDelete.setEnabled(true);
-					}
-				}
-				else {
+				} else {
 					btnEdit.setEnabled(false);
-					btnDelete.setEnabled(true);
+					btnDelete.setEnabled(false);
 				}
 			}
 		});
 		TaxCategoryList.setBounds(167, 56, 115, 130);
 		add(TaxCategoryList);
 		
-		btnSave = new JButton("Save");
-		btnSave.addActionListener(new ActionListener() {
+		btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Save Clicked");
 			}
 		});
-		btnSave.setBounds(65, 197, 89, 23);
-		add(btnSave);
+		btnAdd.setBounds(65, 197, 89, 23);
+		add(btnAdd);
 		
 		btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {

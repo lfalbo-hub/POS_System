@@ -367,4 +367,5 @@ public class Store {
 		return "Store #: " + getNumber() + ", name: " + getName();
 		
 	}
+
 }
