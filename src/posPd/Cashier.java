@@ -128,6 +128,6 @@ public class Cashier {
 
 	public String toString() {
 		String personStr = (person != null) ? person.toString() : "No Person Assigned";
-		return " | " + personStr;
+		return personStr;
 	}
 }

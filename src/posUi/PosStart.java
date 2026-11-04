@@ -8,8 +8,8 @@ public class PosStart {
 	public static void main(String args[]) {
 		
 		//doPosPd_2_1();
-		doPosPd_2_2();
-		//doPosPd_2_34();
+		//doPosPd_2_2();
+		doPosPd_2_34();
 	}
 	
 	private static void doPosPd_2_1() {
@@ -30,7 +30,11 @@ public class PosStart {
 	}
 	
 	private static void doPosPd_2_34() {
+		Store myStore = new Store();
 		
+		myStore.openStore();
+		
+		PosFrame.run(myStore);
 	}
 	
 }
