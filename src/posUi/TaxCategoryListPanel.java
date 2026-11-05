@@ -52,11 +52,11 @@ public class  TaxCategoryListPanel extends JPanel {
 				if(tc != null) {
 					btnEdit.setEnabled(true);
 					
-					if(theStore.isTaxCategoryUsed(tc)) {
+					if(theStore.isTaxCategoryUsed(tc) == true) {
 						btnDelete.setEnabled(false);
 					} else {
 						btnEdit.setEnabled(true);
-						btnDelete.setEnabled(false);
+						btnDelete.setEnabled(true);
 					}
 				} else {
 					btnEdit.setEnabled(false);
@@ -71,6 +71,12 @@ public class  TaxCategoryListPanel extends JPanel {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Save Clicked");
+				
+				TaxCategory atc = new TaxCategory();
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new TaxCategoryEditPanel(currentFrame, theStore, atc, true));
+				currentFrame.getContentPane().revalidate();		
+				
 			}
 		});
 		btnAdd.setBounds(65, 197, 89, 23);
@@ -80,6 +86,11 @@ public class  TaxCategoryListPanel extends JPanel {
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Edit Clicked");
+				
+				TaxCategory atc = TaxCategoryList.getSelectedValue();
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new TaxCategoryEditPanel(currentFrame, theStore, atc, false));
+				currentFrame.getContentPane().revalidate();
 			}
 		});
 		btnEdit.setBounds(180, 197, 89, 23);
@@ -89,6 +100,11 @@ public class  TaxCategoryListPanel extends JPanel {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
+				
+				theStore.removeTaxCategory(TaxCategoryList.getSelectedValue());
+				
+				listModel.removeElement(TaxCategoryList.getSelectedValue());
+				
 			}
 		});
 		btnDelete.setBounds(287, 197, 89, 23);
