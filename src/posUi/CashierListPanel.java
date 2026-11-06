@@ -22,7 +22,7 @@ public class CashierListPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JButton btnAdd;
-	private JButton btnSave;
+	private JButton btnEdit;
 	private JButton btnDelete;
 	
 	/**
@@ -48,12 +48,12 @@ public class CashierListPanel extends JPanel {
 				
 				Cashier c = cashierList.getSelectedValue();
 				if(c != null) {
-					btnAdd.setEnabled(true);			
+					btnEdit.setEnabled(true);			
 					btnDelete.setEnabled(true);
 				}	
 				else {
-					btnAdd.setEnabled(false);
-					btnDelete.setEnabled(false);
+					btnEdit.setEnabled(false);
+					btnDelete.setEnabled(true);
 				}
 			}
 		});
@@ -64,30 +64,45 @@ public class CashierListPanel extends JPanel {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Add Clicked");
+				
+				Cashier c = new Cashier();
+				
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new CashierEditPanel(currentFrame, theStore, c,true));
+				currentFrame.getContentPane().revalidate();
 			}
 		});
 		btnAdd.setBounds(65, 197, 89, 23);
 		add(btnAdd);
 		
-		btnAdd = new JButton("Edit");
-		btnAdd.addActionListener(new ActionListener() {
+		btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Edit Clicked");
+				
+				Cashier c = cashierList.getSelectedValue();
+				
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new CashierEditPanel(currentFrame, theStore, c, false));
+				currentFrame.getContentPane().revalidate();
 			}
 		});
-		btnAdd.setBounds(180, 197, 89, 23);
-		add(btnAdd);
+		btnEdit.setBounds(180, 197, 89, 23);
+		add(btnEdit);
 		
-		JButton btnDelete = new JButton("Delete");
+		btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
+				
+				theStore.removeCashier(cashierList.getSelectedValue());
+				listModel.removeElement(cashierList.getSelectedValue());
 			}
 		});
 		btnDelete.setBounds(287, 197, 89, 23);
 		add(btnDelete);
 		
-		btnAdd.setEnabled(false);
+		btnEdit.setEnabled(false);
 		btnDelete.setEnabled(false);
 	}
 }

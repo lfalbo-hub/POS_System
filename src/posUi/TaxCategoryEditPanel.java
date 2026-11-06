@@ -77,6 +77,7 @@ public class TaxCategoryEditPanel extends JPanel {
 				
 				if(tr != null) {
 					btnEdit.setEnabled(true);
+					btnDelete.setEnabled(true);
 				}
 				else {
 					btnEdit.setEnabled(false);	
@@ -167,7 +168,7 @@ public class TaxCategoryEditPanel extends JPanel {
 
 		btnEdit.setEnabled(false);
 //		btnAdd.setEnabled(true);
-		btnDelete.setEnabled(true);
+		btnDelete.setEnabled(false);
 		
 	}
 

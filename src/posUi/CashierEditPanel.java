@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import posPd.Cashier;
+import posPd.Person;
 import posPd.Store;
 
 import javax.swing.JTextField;
@@ -29,7 +31,7 @@ public class CashierEditPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CashierEditPanel(JFrame currentFrame, Store theStore) {
+	public CashierEditPanel(JFrame currentFrame, Store theStore, Cashier c, boolean isAdd) {
 		setLayout(null);
 		
 		JLabel lblEditCashier = new JLabel("Edit Cashier");
@@ -119,20 +121,46 @@ public class CashierEditPanel extends JPanel {
 		
 		JLabel lblZip = new JLabel("Zip:");
 		lblZip.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblZip.setBounds(325, 133, 32, 16);
+		lblZip.setBounds(309, 133, 32, 16);
 		add(lblZip);
 		
 		txtZip = new JTextField();
 		txtZip.setColumns(10);
-		txtZip.setBounds(369, 128, 82, 26);
+		txtZip.setBounds(351, 128, 82, 26);
 		add(txtZip);
 		
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Save Clicked");
-				
-				
+
+				if(isAdd) {
+					Cashier newCashier = new Cashier();
+					Person ncp = new Person();
+					
+					ncp.setCashier(newCashier);
+					newCashier.setPerson(ncp);
+					
+					newCashier.setNumber(txtNumber.getText());
+					newCashier.getPerson().setAddress(txtAddress.getText());
+					newCashier.getPerson().setCity(txtCity.getText());
+					newCashier.getPerson().setState(txtState.getText());
+					newCashier.getPerson().setName(txtName.getText());
+					newCashier.getPerson().setZip(txtZip.getText());
+					newCashier.getPerson().setsSN(txtSSN.getText());
+					newCashier.getPerson().setPhone(txtPhone.getText());
+					
+					theStore.addCashier(newCashier);
+				}else {
+					c.setNumber(txtNumber.getText());
+					c.getPerson().setAddress(txtAddress.getText());
+					c.getPerson().setCity(txtCity.getText());
+					c.getPerson().setState(txtState.getText());
+					c.getPerson().setName(txtName.getText());
+					c.getPerson().setZip(txtZip.getText());
+					c.getPerson().setsSN(txtSSN.getText());
+					c.getPerson().setPhone(txtPhone.getText());
+				}
 				currentFrame.getContentPane().removeAll();
 				currentFrame.getContentPane().add(new CashierListPanel(currentFrame, theStore));
 				currentFrame.getContentPane().revalidate();	

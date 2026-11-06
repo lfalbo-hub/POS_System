@@ -67,8 +67,8 @@ public class Register {
 	}
 
 	public String toString() {
-		String DrawerOut = (cashDrawer != null) ? cashDrawer.toString() : "No Cash Drawer";
+		
 	
-		return DrawerOut;
+		return number;
 	}
 }
