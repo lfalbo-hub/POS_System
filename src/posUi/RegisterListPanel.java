@@ -27,12 +27,15 @@ public class RegisterListPanel extends JPanel {
 	private JButton btnAdd;
 	private JButton btnEdit;
 	private JButton btnDelete;
+	private JPanel currentPanel;
 	/**
 	 * Create the panel.
 	 * @param currentFrame 
 	 */
 	public RegisterListPanel(JFrame currentFrame, Store theStore) {
 		setLayout(null);
+		
+		currentPanel = this;
 		
 		JLabel lblRegisterListLabel = new JLabel("Register List");
 		lblRegisterListLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -43,10 +46,21 @@ public class RegisterListPanel extends JPanel {
 		
 		listModel.addAll(theStore.getRegisters().values());
 		
-		JList registerList = new JList(listModel);
+		JList<Register> registerList = new JList<Register>(listModel);
 		registerList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				System.out.println("List Value Changed");
+				
+				Register r = registerList.getSelectedValue();
+				if(r != null) {
+					btnEdit.setEnabled(true);			
+					btnDelete.setEnabled(true);
+				}	
+				else {
+					btnEdit.setEnabled(false);
+					btnDelete.setEnabled(true);
+				}
+			
 			}
 		});
 		registerList.setBounds(167, 56, 115, 130);
@@ -56,6 +70,13 @@ public class RegisterListPanel extends JPanel {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Add Clicked");
+				
+				Register r = new Register();
+				
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new RegisterEditPanel(currentFrame, theStore, r, true));
+				currentFrame.getContentPane().revalidate();
+
 			}
 		});
 		btnAdd.setBounds(65, 197, 89, 23);
@@ -65,6 +86,13 @@ public class RegisterListPanel extends JPanel {
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Edit Clicked");
+				
+				Register r = registerList.getSelectedValue();
+				
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new RegisterEditPanel(currentFrame, theStore, r, false));
+				currentFrame.getContentPane().revalidate();
+
 			}
 		});
 		btnEdit.setBounds(180, 197, 89, 23);
@@ -74,6 +102,11 @@ public class RegisterListPanel extends JPanel {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
+				
+				theStore.removeRegister(registerList.getSelectedValue());
+				listModel.removeElement(registerList.getSelectedValue());
+				
+				currentFrame.getContentPane().repaint();
 			}
 		});
 		btnDelete.setBounds(287, 197, 89, 23);
