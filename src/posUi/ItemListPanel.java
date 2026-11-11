@@ -65,25 +65,37 @@ public class ItemListPanel extends JPanel {
 		itemList.setBounds(167, 56, 115, 130);
 		add(itemList);
 		
-		JButton btnAdd = new JButton("Add");
+		btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Add Clicked");
+				
+				Item i = new Item();
+				
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new ItemEditPanel(currentFrame, theStore, i, true));
+				currentFrame.getContentPane().revalidate();
+				
 			}
 		});
 		btnAdd.setBounds(65, 197, 89, 23);
 		add(btnAdd);
 		
-		JButton btnEdit = new JButton("Edit");
+		btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Edit Clicked");
+				
+				Item i = itemList.getSelectedValue();
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new ItemEditPanel(currentFrame, theStore, i, false));
+				currentFrame.getContentPane().revalidate();
 			}
 		});
 		btnEdit.setBounds(180, 197, 89, 23);
 		add(btnEdit);
 		
-		JButton btnDelete = new JButton("Delete");
+		btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
