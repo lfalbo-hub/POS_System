@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
@@ -33,21 +34,24 @@ public class TaxRateEditPanel extends JPanel {
 		lblTaxRateEdit.setBounds(150, 27, 95, 14);
 		add(lblTaxRateEdit);
 		
-		
-		
 		JLabel lblTaxRate = new JLabel("Tax Rate:");
 		lblTaxRate.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTaxRate.setBounds(51, 70, 91, 14);
+		lblTaxRate.setBounds(37, 67, 91, 14);
 		add(lblTaxRate);
 		
 		JLabel lblEffectiveDate = new JLabel("Effective Date:");
-		lblEffectiveDate.setBounds(51, 109, 91, 14);
+		lblEffectiveDate.setBounds(37, 106, 91, 14);
 		add(lblEffectiveDate);
 		
 		txtTaxRateField = new JTextField(tr.getTaxRate().toString());
-		txtTaxRateField.setBounds(139, 67, 86, 20);
+		txtTaxRateField.setBounds(140, 61, 105, 20);
 		add(txtTaxRateField);
 		txtTaxRateField.setColumns(10);
+		
+		txtEffectiveDateField = new JTextField(tr.getEffectiveDate().toString());
+		txtEffectiveDateField.setBounds(140, 100, 105, 20);
+		add(txtEffectiveDateField);
+		txtEffectiveDateField.setColumns(10);
 		
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
@@ -55,7 +59,10 @@ public class TaxRateEditPanel extends JPanel {
 				System.out.println("Save Clicked");
 				
 				tr.setTaxRate(new BigDecimal(txtTaxRateField.getText()));
-				tr.setEffectiveDate(txtEffectiveDateField.getText());
+				
+				LocalDate newDate = LocalDate.parse(txtEffectiveDateField.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+				
+				tr.setEffectiveDate(newDate);
 				
 				if(isAdd) {
 					tc.addTaxRate(tr);
@@ -84,11 +91,6 @@ public class TaxRateEditPanel extends JPanel {
 		});
 		btnCancel.setBounds(269, 234, 89, 23);
 		add(btnCancel);
-		
-		txtEffectiveDateField = new JTextField(tr.getEffectiveDate().toString());
-		txtEffectiveDateField.setBounds(139, 106, 86, 20);
-		add(txtEffectiveDateField);
-		txtEffectiveDateField.setColumns(10);
 
 		if(!isAdd) {
 			txtTaxRateField.setText(tr.getTaxRate().toString());

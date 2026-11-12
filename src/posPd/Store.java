@@ -243,7 +243,8 @@ public class Store {
 	 */
 	public void removeTaxCategory(TaxCategory taxCategory) {
 		if(taxCategories != null && taxCategory.getKey() != null) {
-			taxCategories.remove(taxCategory.getKey(), taxCategory);
+			//taxCategories.remove(taxCategory.getKey(), taxCategory);
+			taxCategories.remove(taxCategory.getKey());
 		}
 	}
 

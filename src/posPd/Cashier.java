@@ -12,7 +12,7 @@ public class Cashier {
 	public Cashier() {
 		number = "";
 		password = "";
-		person = null;
+		person = new Person();
 		sessions = new ArrayList<Session>();
 	}
 

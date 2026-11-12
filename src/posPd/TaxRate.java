@@ -69,6 +69,8 @@ public class TaxRate implements Comparable<TaxRate> {
 
 	public void setEffectiveDate(String effectiveDate) {
 		this.effectiveDate = LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("M/d/yyyy"));
+		
+		//this.effectiveDate = LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("yyyy/M/d"));
 	}
 	/**
 	 * @param taxRate the taxRate to set

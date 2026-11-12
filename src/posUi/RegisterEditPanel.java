@@ -38,7 +38,7 @@ public class RegisterEditPanel extends JPanel {
 		lblNewLabel.setBounds(43, 116, 91, 14);
 		add(lblNewLabel);
 		
-		txtRegisterNumber = new JTextField();
+		txtRegisterNumber = new JTextField(r.getNumber());
 		txtRegisterNumber.setBounds(155, 113, 140, 20);
 		add(txtRegisterNumber);
 		txtRegisterNumber.setColumns(10);

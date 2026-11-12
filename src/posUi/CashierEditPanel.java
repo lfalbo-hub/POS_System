@@ -44,7 +44,7 @@ public class CashierEditPanel extends JPanel {
 		lblNumber.setBounds(27, 67, 61, 16);
 		add(lblNumber);
 		
-		txtNumber = new JTextField();
+		txtNumber = new JTextField(c.getNumber());
 		txtNumber.setColumns(10);
 		txtNumber.setBounds(98, 62, 97, 26);
 		add(txtNumber);
@@ -54,7 +54,7 @@ public class CashierEditPanel extends JPanel {
 		lblName.setBounds(27, 100, 61, 16);
 		add(lblName);
 		
-		txtName = new JTextField();
+		txtName = new JTextField(c.getPerson().getName());
 		txtName.setColumns(10);
 		txtName.setBounds(98, 95, 130, 26);
 		add(txtName);
@@ -64,7 +64,7 @@ public class CashierEditPanel extends JPanel {
 		lblAddress.setBounds(27, 133, 61, 16);
 		add(lblAddress);
 		
-		txtAddress = new JTextField();
+		txtAddress = new JTextField(c.getPerson().getAddress());
 		txtAddress.setColumns(10);
 		txtAddress.setBounds(98, 128, 130, 26);
 		add(txtAddress);
@@ -74,7 +74,7 @@ public class CashierEditPanel extends JPanel {
 		lblCity.setBounds(27, 166, 61, 16);
 		add(lblCity);
 		
-		txtCity = new JTextField();
+		txtCity = new JTextField(c.getPerson().getCity());
 		txtCity.setColumns(10);
 		txtCity.setBounds(98, 161, 130, 26);
 		add(txtCity);
@@ -84,7 +84,7 @@ public class CashierEditPanel extends JPanel {
 		lblPhone.setBounds(27, 199, 61, 16);
 		add(lblPhone);
 		
-		txtPhone = new JTextField();
+		txtPhone = new JTextField(c.getPerson().getPhone());
 		txtPhone.setColumns(10);
 		txtPhone.setBounds(98, 194, 130, 26);
 		add(txtPhone);
@@ -94,7 +94,7 @@ public class CashierEditPanel extends JPanel {
 		lblSSN.setBounds(209, 67, 42, 16);
 		add(lblSSN);
 		
-		txtSSN = new JTextField();
+		txtSSN = new JTextField(c.getPerson().getsSN());
 		txtSSN.setColumns(10);
 		txtSSN.setBounds(263, 62, 156, 26);
 		add(txtSSN);
@@ -104,7 +104,7 @@ public class CashierEditPanel extends JPanel {
 		lblPassword.setBounds(6, 232, 82, 16);
 		add(lblPassword);
 		
-		txtPassword = new JTextField();
+		txtPassword = new JTextField(c.getPassword());
 		txtPassword.setColumns(10);
 		txtPassword.setBounds(98, 227, 130, 26);
 		add(txtPassword);
@@ -114,7 +114,7 @@ public class CashierEditPanel extends JPanel {
 		lblNewLabel_1_7.setBounds(240, 133, 38, 16);
 		add(lblNewLabel_1_7);
 		
-		txtState = new JTextField();
+		txtState = new JTextField(c.getPerson().getState());
 		txtState.setColumns(10);
 		txtState.setBounds(279, 128, 32, 26);
 		add(txtState);
@@ -124,7 +124,7 @@ public class CashierEditPanel extends JPanel {
 		lblZip.setBounds(309, 133, 32, 16);
 		add(lblZip);
 		
-		txtZip = new JTextField();
+		txtZip = new JTextField(c.getPerson().getZip());
 		txtZip.setColumns(10);
 		txtZip.setBounds(351, 128, 82, 26);
 		add(txtZip);
