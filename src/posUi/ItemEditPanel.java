@@ -39,6 +39,13 @@ public class ItemEditPanel extends JPanel {
 	private JList<Price> PriceList;
 	private JList<UPC> UPCList;
 
+	private JButton UPCEditButton;
+	private JButton UPCAddButton;
+	private JButton UPCDeleteButton;
+	private JButton PriceEditButton;
+	private JButton PriceAddButton;
+	private JButton PriceDeleteButton;
+	private JComboBox TaxCategoryBox;
 	/**
 	 * Create the panel.
 	 */
@@ -73,6 +80,19 @@ public class ItemEditPanel extends JPanel {
 		ItemNumberlbl.setBounds(44, 79, 72, 14);
 		add(ItemNumberlbl);
 		
+		JLabel Descriptionlbl = new JLabel("Description:");
+		Descriptionlbl.setHorizontalAlignment(SwingConstants.CENTER);
+		Descriptionlbl.setBounds(39, 120, 65, 14);
+		add(Descriptionlbl);
+		
+		JLabel TaxCategorylbl = new JLabel("Tax Category:");
+		TaxCategorylbl.setBounds(39, 151, 72, 14);
+		add(TaxCategorylbl);
+		
+		/*
+		 *  LIST MODELS
+		 */
+		
 		UPCListModel = new DefaultListModel<UPC>();
 		UPCListModel.addAll(i.getuPCs());
 		UPCList = new JList(UPCListModel);
@@ -93,7 +113,11 @@ public class ItemEditPanel extends JPanel {
 		PriceList.setBounds(277, 177, 122, 53);
 		add(PriceList);
 		
-		JButton UPCEditButton = new JButton("Edit");
+		/*
+		 *  UPC BUTTONS
+		 */
+		
+		UPCEditButton = new JButton("Edit");
 		UPCEditButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -101,15 +125,29 @@ public class ItemEditPanel extends JPanel {
 		UPCEditButton.setBounds(344, 116, 55, 23);
 		add(UPCEditButton);
 		
-		JButton UPCAddButton = new JButton("Add");
+		UPCAddButton = new JButton("Add");
 		UPCAddButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 			}
 		});
 		UPCAddButton.setBounds(277, 116, 55, 23);
 		add(UPCAddButton);
 		
-		JButton PriceAddButton = new JButton("Add");
+		UPCDeleteButton = new JButton("Delete");
+		UPCDeleteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		UPCDeleteButton.setBounds(301, 143, 72, 23);
+		add(UPCDeleteButton);
+		
+		/*
+		 *  PRICE BUTTONS
+		 */
+		
+		PriceAddButton = new JButton("Add");
 		PriceAddButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -117,7 +155,7 @@ public class ItemEditPanel extends JPanel {
 		PriceAddButton.setBounds(277, 241, 55, 23);
 		add(PriceAddButton);
 		
-		JButton PriceEditButton = new JButton("Edit");
+		PriceEditButton = new JButton("Edit");
 		PriceEditButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -125,7 +163,7 @@ public class ItemEditPanel extends JPanel {
 		PriceEditButton.setBounds(344, 241, 55, 23);
 		add(PriceEditButton);
 		
-		JButton PriceDeleteButton = new JButton("Delete");
+		PriceDeleteButton = new JButton("Delete");
 		PriceDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -133,18 +171,18 @@ public class ItemEditPanel extends JPanel {
 		PriceDeleteButton.setBounds(301, 266, 72, 23);
 		add(PriceDeleteButton);
 		
-		JButton UPCDeleteButton = new JButton("Delete");
-		UPCDeleteButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		UPCDeleteButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		UPCDeleteButton.setBounds(301, 143, 72, 23);
-		add(UPCDeleteButton);
+		/*
+		 *  SAVE & CANCEL BUTTONS
+		 */
 		
 		JButton SaveButton = new JButton("Save");
 		SaveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("Save Clicked");
+				
+				i.setDescription(DescriptionField.getText());
+				i.setNumber(ItemNumberField.getText());
+				
 			}
 		});
 		SaveButton.setBounds(39, 227, 89, 23);
@@ -158,6 +196,10 @@ public class ItemEditPanel extends JPanel {
 		CancelButton.setBounds(150, 227, 89, 23);
 		add(CancelButton);
 		
+		/*
+		 *  FIELDS
+		 */
+		
 		ItemNumberField = new JTextField();
 		ItemNumberField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -166,15 +208,6 @@ public class ItemEditPanel extends JPanel {
 		ItemNumberField.setBounds(121, 76, 86, 20);
 		add(ItemNumberField);
 		ItemNumberField.setColumns(10);
-		
-		JLabel Descriptionlbl = new JLabel("Description:");
-		Descriptionlbl.setHorizontalAlignment(SwingConstants.CENTER);
-		Descriptionlbl.setBounds(39, 120, 65, 14);
-		add(Descriptionlbl);
-		
-		JLabel TaxCategorylbl = new JLabel("Tax Category:");
-		TaxCategorylbl.setBounds(39, 151, 72, 14);
-		add(TaxCategorylbl);
 		
 		DescriptionField = new JTextField();
 		DescriptionField.addActionListener(new ActionListener() {
@@ -185,7 +218,11 @@ public class ItemEditPanel extends JPanel {
 		add(DescriptionField);
 		DescriptionField.setColumns(10);
 		
-		JComboBox TaxCategoryBox = new JComboBox();
+		/*
+		 *  MISC
+		 */
+		
+		TaxCategoryBox = new JComboBox();
 		TaxCategoryBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

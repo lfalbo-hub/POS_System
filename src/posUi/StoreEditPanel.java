@@ -37,7 +37,7 @@ public class StoreEditPanel extends JPanel {
 		lblNewLabel.setBounds(43, 116, 91, 14);
 		add(lblNewLabel);
 		
-		txtStoreName = new JTextField();
+		txtStoreName = new JTextField(theStore.getName());
 		txtStoreName.setBounds(155, 113, 140, 20);
 		add(txtStoreName);
 		txtStoreName.setColumns(10);
