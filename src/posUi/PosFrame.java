@@ -43,7 +43,7 @@ public class PosFrame extends JFrame {
 	 */
 	public PosFrame(Store theStore) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 400);
+		setBounds(100, 100, 550, 500);
 		
 		currentFrame = this;
 		

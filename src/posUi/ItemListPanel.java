@@ -53,7 +53,7 @@ public class ItemListPanel extends JPanel {
 				
 				if(i != null) {
 					btnEdit.setEnabled(true);
-					btnDelete.setEnabled(false);
+					btnDelete.setEnabled(true);
 				}
 				else {
 					btnEdit.setEnabled(true);
@@ -62,7 +62,7 @@ public class ItemListPanel extends JPanel {
 				
 			}
 		});
-		itemList.setBounds(167, 56, 115, 130);
+		itemList.setBounds(100, 56, 249, 130);
 		add(itemList);
 		
 		btnAdd = new JButton("Add");
@@ -99,6 +99,13 @@ public class ItemListPanel extends JPanel {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
+				
+// TODO Create Check to see if Item is in use if not allow it to be deleted
+//				if() {}
+				theStore.removeItem(itemList.getSelectedValue());
+				
+				listModel.removeElement(itemList.getSelectedValue());
+				
 			}
 		});
 		btnDelete.setBounds(287, 197, 89, 23);
