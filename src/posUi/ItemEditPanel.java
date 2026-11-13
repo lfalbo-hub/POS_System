@@ -108,6 +108,19 @@ public class ItemEditPanel extends JPanel {
 		UPCList = new JList<UPC>(UPCListModel);
 		UPCList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
+				System.out.println("List Value Changed");
+				
+				UPC u = UPCList.getSelectedValue();
+				
+				if(u != null) {
+					UPCEditButton.setEnabled(true);
+					UPCDeleteButton.setEnabled(true);
+				}
+				else {
+					UPCEditButton.setEnabled(true);
+					UPCDeleteButton.setEnabled(true);
+				}
+				
 			}
 		});
 		UPCList.setBounds(372, 34, 122, 72);
@@ -118,6 +131,18 @@ public class ItemEditPanel extends JPanel {
 		PriceList = new JList<Price>(priceListModel);
 		PriceList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
+				System.out.println("List Value Changed");
+				
+				Price p = PriceList.getSelectedValue();
+				
+				if(p != null) {
+					PriceEditButton.setEnabled(true);
+					PriceDeleteButton.setEnabled(true);
+				}
+				else {
+					PriceEditButton.setEnabled(true);
+					PriceDeleteButton.setEnabled(true);
+				}
 			}
 		});
 		PriceList.setBounds(372, 178, 122, 53);
@@ -162,6 +187,9 @@ public class ItemEditPanel extends JPanel {
 		UPCDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
+				
+				aStore.removeUPC(UPCList.getSelectedValue());
+				UPCList
 			}
 		});
 		UPCDeleteButton.setBounds(396, 144, 72, 23);
@@ -221,8 +249,12 @@ public class ItemEditPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Save Clicked");
 				
+				TaxCategory tc = new TaxCategory();
+				tc.setCategory(TaxCategoryBox.getSelectedItem().toString());
+				
 				i.setDescription(DescriptionField.getText());
 				i.setNumber(ItemNumberField.getText());
+				i.setTaxCategory(tc);
 				
 				if(isAdd) {
 					aStore.addItem(i);	
@@ -278,12 +310,12 @@ public class ItemEditPanel extends JPanel {
 		TaxCategoryListModel = new DefaultComboBoxModel<TaxCategory>();
 		TaxCategoryListModel.addAll(aStore.getTaxCategories().values());
 		TaxCategoryBox = new JComboBox<TaxCategory>();
-		TaxCategoryBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		TaxCategoryBox.setBounds(135, 149, 86, 22);
+		TaxCategoryBox.setBounds(135, 149, 148, 22);
 		add(TaxCategoryBox);
 
+		UPCEditButton.setEnabled(false);
+		PriceEditButton.setEnabled(false);
+		PriceDeleteButton.setEnabled(false);
+		UPCDeleteButton.setEnabled(false);
 	}
 }

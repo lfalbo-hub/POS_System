@@ -64,21 +64,26 @@ public class PriceEditPanel extends JPanel {
 		
 		JButton btnSaveButton = new JButton("Save");
 		btnSaveButton.addActionListener(new ActionListener() {
-			@SuppressWarnings("unlikely-arg-type")
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Save Clicked");
 				
-				if(chckbxPromoPrice.equals(true))  {
-					PromoPrice pp = new PromoPrice(); 
+				if(isAdd) {
+					if(chckbxPromoPrice.isSelected())  {
+						PromoPrice pp = new PromoPrice(); 
 					
-					LocalDate newDate = LocalDate.parse(txtEffectiveDate.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+						LocalDate newDate = LocalDate.parse(txtEffectiveDate.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 					
-					pp.setEffectiveDate(newDate);
-					pp.setPrice(new BigDecimal(txtPrice.getText()));
-					pp.setItem(i);
+						pp.setEffectiveDate(newDate);
+						pp.setPrice(new BigDecimal(txtPrice.getText()));
+						pp.setItem(i);
 					
-					i.addPrice(pp);
-				}		
+						i.addPrice(pp);
+					}
+					else {
+						p.setPrice(new BigDecimal(txtPrice.getText()));
+						i.addPrice(p);
+					}	
+				}	
 							
 				currentFrame.getContentPane().removeAll();
 				currentFrame.getContentPane().add(parentPanel);
@@ -109,8 +114,9 @@ public class PriceEditPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		chckbxPromoPrice.setBounds(176, 72, 97, 23);
+		chckbxPromoPrice.setBounds(155, 70, 130, 23);
 		add(chckbxPromoPrice);
 
+		
 	}
 }
