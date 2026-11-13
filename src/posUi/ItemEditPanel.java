@@ -131,7 +131,7 @@ public class ItemEditPanel extends JPanel {
 		PriceList = new JList<Price>(priceListModel);
 		PriceList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				System.out.println("List Value Changed");
+				System.out.println("Price List Value Changed");
 				
 				Price p = PriceList.getSelectedValue();
 				
@@ -140,8 +140,8 @@ public class ItemEditPanel extends JPanel {
 					PriceDeleteButton.setEnabled(true);
 				}
 				else {
-					PriceEditButton.setEnabled(true);
-					PriceDeleteButton.setEnabled(true);
+					PriceEditButton.setEnabled(false);
+					PriceDeleteButton.setEnabled(false);
 				}
 			}
 		});
@@ -189,7 +189,7 @@ public class ItemEditPanel extends JPanel {
 				System.out.println("Delete Clicked");
 				
 				aStore.removeUPC(UPCList.getSelectedValue());
-				UPCList
+				//UPCList
 			}
 		});
 		UPCDeleteButton.setBounds(396, 144, 72, 23);
@@ -235,6 +235,10 @@ public class ItemEditPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Delete Clicked");
 				
+				i.removePrice(PriceList.getSelectedValue());
+				priceListModel.removeElement(PriceList.getSelectedValues());
+				
+				currentFrame.revalidate();
 			}
 		});
 		PriceDeleteButton.setBounds(396, 267, 72, 23);
@@ -284,16 +288,8 @@ public class ItemEditPanel extends JPanel {
 		/*
 		 *  FIELDS
 		 */
-		Price p = new Price();
 		
-		currentFrame.getContentPane().removeAll();
-		currentFrame.getContentPane().add(new PriceEditPanel(currentFrame, currentPanel, aStore, i, p, true));
-		currentFrame.getContentPane().revalidate(); 		
 		ItemNumberField = new JTextField(i.getNumber());
-		ItemNumberField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		ItemNumberField.setBounds(135, 76, 114, 20);
 		add(ItemNumberField);
 		ItemNumberField.setColumns(10);
